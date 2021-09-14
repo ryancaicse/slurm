@@ -3318,6 +3318,7 @@ slurm_conf_init(const char *file_name)
 	if (_establish_config_source(&config_file, &memfd)) {
 		log_var(lvl, "Could not establish a configuration source");
 		xfree(config_file);
+		slurm_mutex_unlock(&conf_lock);
 		return SLURM_ERROR;
 	}
 	debug("%s: using config_file=%s", __func__, config_file);
