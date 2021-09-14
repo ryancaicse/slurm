@@ -899,6 +899,7 @@ extern int archive_write_file(buf_t *buffer, char *cluster_name,
 				      arch_type, archive_period);
 	if (!new_file) {
 		error("%s: Unable to make archive file name.", __func__);
+		slurm_mutex_unlock(&local_file_lock);
 		return SLURM_ERROR;
 	}
 
